@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:20:47 2014 Antoine Plaskowski
-** Last update Fri Feb 28 11:10:28 2014 Antoine Plaskowski
+** Last update Fri Feb 28 17:28:37 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_RTV1_H_
@@ -55,6 +55,12 @@ struct		s_rtv1
 };
 
 /*
+**		my_rtv1.c
+*/
+
+int		my_rtv1(t_rtv1 * rtv1);
+
+/*
 **		my_object.c
 */
 
@@ -72,10 +78,10 @@ t_object	*my_insert_object(t_object *object, t_object *new_object);
 t_object	*my_cpy_object(t_object * object);
 
 /*
-**		my_parsing.c
+**		my_load_scene.c
 */
 
-int		my_parsing(t_rtv1 *rtv1, char *paht);
+int		my_load_scene(t_rtv1 *rtv1, char *paht);
 
 /*
 **		my_put_pixel_to_img.c

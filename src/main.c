@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:00:09 2014 Antoine Plaskowski
-** Last update Fri Feb 28 10:55:44 2014 Antoine Plaskowski
+** Last update Fri Feb 28 17:29:03 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -67,6 +67,20 @@ static void	my_aff_screen(t_matrix **screen)
   printf("%d\n", i);
 }
 
+static void	my_put_write(t_xvar *xvar)
+{
+  int		i;
+  t_color	color;
+
+  i = 0;
+  color.color = 0xFFFFFF;
+  while (i < xvar->x * xvar->y)
+    my_put_pixel_to_img(xvar->img, &color, i++ * 4);
+  my_event_expose(xvar);
+  my_event_expose(xvar);
+  pause();
+}
+
 int		main(int argc, char **argv)
 {
   t_rtv1	rtv1;
@@ -77,11 +91,12 @@ int		main(int argc, char **argv)
     return (1);
   if ((rtv1.screen = my_init_screen(rtv1.xvar)) == NULL)
     return (1);
-  if (my_parsing(&rtv1, my_search_map(argv)))
+  if (my_load_scene(&rtv1, my_search_map(argv)))
     return (1);
   my_aff_all_object(rtv1.object);
   while (rtv1.object)
     rtv1.object = my_remove_object(rtv1.object);
+  my_rtv1(&rtv1);
   my_free_screen(rtv1.screen);
   my_close_x(rtv1.xvar);
   return (0);

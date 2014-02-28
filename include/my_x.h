@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Jan  3 10:09:09 2014 Antoine PLASKOWSKI
-** Last update Fri Feb 28 11:10:53 2014 Antoine Plaskowski
+** Last update Fri Feb 28 11:25:10 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_X_H_
@@ -30,5 +30,11 @@ typedef struct	s_xvar
 
 t_xvar		*my_init_x(void);
 void		my_close_x(t_xvar *xvar);
+
+/*
+**		my_event_expose.c
+*/
+
+void		my_event_expose(t_xvar *xvar);
 
 #endif		/* !MY_X_H_ */

@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.net>
 ## 
 ## Started on  Fri Jan  3 12:53:41 2014 Antoine PLASKOWSKI
-## Last update Fri Feb 28 11:00:20 2014 Antoine Plaskowski
+## Last update Fri Feb 28 17:28:49 2014 Antoine Plaskowski
 ##
 
 CC	=	clang
@@ -21,10 +21,12 @@ LDFLAGS	+=	-l X11 -l m
 NAME	=	rtv1
 
 SRC	+=	src/main.c
-SRC	+=	src/my_parsing.c
+SRC	+=	src/my_rtv1.c
+SRC	+=	src/my_load_scene.c
 
 SRC	+=	src/my_x.c
 SRC	+=	src/my_put_pixel_to_img.c
+SRC	+=	src/my_event_expose.c
 
 SRC	+=	src/my_open.c
 
@@ -35,6 +37,8 @@ SRC	+=	src/my_matrix.c
 SRC	+=	src/my_tool_matrix.c
 
 SRC	+=	src/my_tool_tab.c
+
+SRC	+=	src/my_equation_second.c
 
 SRC	+=	src/my_str_to_wordtab.c
 SRC	+=	src/my_malloc.c
