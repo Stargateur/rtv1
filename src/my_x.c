@@ -5,10 +5,11 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Jan  3 09:41:53 2014 Antoine PLASKOWSKI
-** Last update Fri Feb 28 10:09:57 2014 Antoine Plaskowski
+** Last update Fri Feb 28 10:31:37 2014 Antoine Plaskowski
 */
 
 #include	<X11/Xlib.h>
+#include	<X11/Xutil.h>
 #include	<stdlib.h>
 #include	"my_x.h"
 #include	"my_str.h"
@@ -35,6 +36,33 @@ static XSetWindowAttributes	*my_set_at(XSetWindowAttributes *at)
   return (at);
 }
 
+static void			my_create_window(t_xvar *xvar)
+{
+  XSetWindowAttributes		at;
+
+  xvar->win = XCreateWindow(xvar->dpy, DefaultRootWindow(xvar->dpy),
+			    xvar->x / 2 , xvar->y / 2, xvar->x, xvar->y, 0, 0,
+			    0, CopyFromParent, CWEventMask, my_set_at(&at));
+  XStoreName(xvar->dpy, xvar->win, "RayTracer");
+  XMapWindow(xvar->dpy, xvar->win);
+}
+
+static int			my_create_image(t_xvar *xvar)
+{
+  char				*img;
+
+  if ((img = my_malloc(sizeof(char) * 4 * xvar->x * xvar->y)) == NULL)
+    return (1);
+  if ((xvar->img = XCreateImage(xvar->dpy, DefaultVisual(xvar->dpy, xvar->scn),
+				DefaultDepth(xvar->dpy, xvar->scn), ZPixmap, 0,
+				img, xvar->x, xvar->y, 32, 0)) == NULL)
+    {
+      my_putstr("Error : create image\n", 2);
+      return (1);
+    }
+  return (0);
+}
+
 t_xvar				*my_init_x(void)
 {
   t_xvar			*xvar;
@@ -51,39 +79,18 @@ t_xvar				*my_init_x(void)
   xvar->gc = DefaultGC(xvar->dpy, xvar->scn);
   xvar->x = DisplayWidth(xvar->dpy, xvar->scn) / 2;
   xvar->y = DisplayHeight(xvar->dpy, xvar->scn) / 2;
+  my_create_window(xvar);
+  if (my_create_image(xvar))
+    return (NULL);
   return (xvar);
 }
 
-void				my_create_window(t_xvar *xvar)
-{
-  XSetWindowAttributes		at;
-
-  xvar->win = XCreateWindow(xvar->dpy, DefaultRootWindow(xvar->dpy),
-			    xvar->x / 2 , xvar->y / 2, xvar->x, xvar->y, 0, 0,
-			    0, CopyFromParent, CWEventMask, my_set_at(&at));
-  XStoreName(xvar->dpy, xvar->win, "Wolf3d");
-  XMapWindow(xvar->dpy, xvar->win);
-}
-
-XImage				*my_create_image(t_xvar *xvar, char *img, int x, int y)
-{
-  XImage			*x_img;
-
-  if (xvar == NULL)
-    return (NULL);
-  if (img == NULL && !(img = my_malloc(sizeof(char) * 4 * x * y)))
-    return (NULL);
-  if ((x_img = XCreateImage(xvar->dpy, DefaultVisual(xvar->dpy, xvar->scn),
-			    DefaultDepth(xvar->dpy, xvar->scn), ZPixmap, 0,
-			    img, x, y, sizeof(char) * 4, 0)) == NULL)
-    return (NULL);
-  return (x_img);
-}
-
-void				my_free_x(t_xvar *xvar)
+void				my_close_x(t_xvar *xvar)
 {
   if (xvar != NULL)
     {
+      if (xvar->img != NULL)
+	XDestroyImage(xvar->img);
       XCloseDisplay(xvar->dpy);
       free(xvar);
     }

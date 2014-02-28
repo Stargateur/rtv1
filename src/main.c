@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:00:09 2014 Antoine Plaskowski
-** Last update Fri Feb 28 09:46:07 2014 Antoine Plaskowski
+** Last update Fri Feb 28 10:55:44 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -83,6 +83,6 @@ int		main(int argc, char **argv)
   while (rtv1.object)
     rtv1.object = my_remove_object(rtv1.object);
   my_free_screen(rtv1.screen);
-  my_free_x(rtv1.xvar);
+  my_close_x(rtv1.xvar);
   return (0);
 }

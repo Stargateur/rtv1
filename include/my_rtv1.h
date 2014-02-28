@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:20:47 2014 Antoine Plaskowski
-** Last update Fri Feb 28 09:24:39 2014 Antoine Plaskowski
+** Last update Fri Feb 28 11:10:28 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_RTV1_H_
@@ -26,7 +26,7 @@ union		u_color
   {
     char	r;
     char	b;
-    char	V;
+    char	v;
     char	a;
   }		comp;
 };
@@ -69,11 +69,18 @@ int		my_aff_all_object(t_object *object);
 int		my_aff_object(t_object *object);
 t_object	*my_remove_object(t_object *object);
 t_object	*my_insert_object(t_object *object, t_object *new_object);
+t_object	*my_cpy_object(t_object * object);
 
 /*
 **		my_parsing.c
 */
 
 int		my_parsing(t_rtv1 *rtv1, char *paht);
+
+/*
+**		my_put_pixel_to_img.c
+*/
+
+int		my_put_pixel_to_img(XImage *img, t_color *color, int x);
 
 #endif		/* !MY_RTV1_H_ */

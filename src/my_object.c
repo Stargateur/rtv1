@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:51:22 2014 Antoine Plaskowski
-** Last update Fri Feb 28 09:25:59 2014 Antoine Plaskowski
+** Last update Fri Feb 28 10:38:26 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -15,15 +15,10 @@
 
 static int	my_init_object(t_object *object)
 {
-  int		i;
-
   object->prev = NULL;
   object->name = NULL;
   if ((object->position = my_new_matrix(4, 1)) == NULL)
     return (1);
-  i = 0;
-  while (i < 4)
-    object->position->matrix[i++][0] = 0;
   object->rotation_x = 0;
   object->rotation_y = 0;
   object->rotation_z = 0;

@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Jan  3 10:09:09 2014 Antoine PLASKOWSKI
-** Last update Fri Feb 28 10:09:22 2014 Antoine Plaskowski
+** Last update Fri Feb 28 11:10:53 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_X_H_
@@ -16,6 +16,7 @@
 typedef struct	s_xvar
 {
   Display	*dpy;
+  XImage	*img;
   GC		gc;
   Window	win;
   int		x;
@@ -23,9 +24,11 @@ typedef struct	s_xvar
   int		scn;
 }		t_xvar;
 
+/*
+**		my_x.c
+*/
+
 t_xvar		*my_init_x(void);
-void		my_create_window(t_xvar *xvar);
-XImage		*my_create_image(t_xvar *xvar, char *img, int x, int y);
-void		my_free_x(t_xvar *xvar);
+void		my_close_x(t_xvar *xvar);
 
 #endif		/* !MY_X_H_ */

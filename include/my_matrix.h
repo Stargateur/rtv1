@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Mon Nov 25 15:47:10 2013 Antoine Plaskowski
-** Last update Thu Feb 27 18:31:22 2014 Antoine Plaskowski
+** Last update Fri Feb 28 10:45:30 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_STRUCT_MATRIX_H_
@@ -19,9 +19,19 @@ struct		s_matrix
   int		n;
 };
 
+/*
+**		my_matrix.c
+*/
+
 t_matrix	*my_new_matrix(const int m, const int n);
 t_matrix	*my_mul_matrix(const t_matrix *a, const t_matrix *b);
 void		my_aff_matrix(const t_matrix *a);
 void		my_free_matrix(t_matrix *matrix);
+
+/*
+**		my_tool_matrix.c
+*/
+
+t_matrix	*my_cpy_matrix(t_matrix *matrix);
 
 #endif		/* !MY_STRUCT_MATRIX_H_ */

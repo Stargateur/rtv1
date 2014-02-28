@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Mon Nov 25 15:48:04 2013 Antoine Plaskowski
-** Last update Fri Feb 28 08:59:25 2014 Antoine Plaskowski
+** Last update Fri Feb 28 10:38:07 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -17,19 +17,22 @@ t_matrix	*my_new_matrix(const int m, const int n)
 {
   t_matrix	*matrix;
   int		i;
+  int		j;
 
   if ((matrix = my_malloc(sizeof(t_matrix))) == NULL)
     return (NULL);
-  if ((matrix->matrix = my_malloc(sizeof(double *) * (m + 1))) == NULL)
+  if ((matrix->matrix = my_malloc(sizeof(double *) * m)) == NULL)
     return (NULL);
   i = 0;
   while (i < m)
     {
       if ((matrix->matrix[i] = my_malloc(sizeof(double) * n)) == NULL)
 	return (NULL);
+      j = 0;
+      while (j < n)
+	matrix->matrix[i][j++] = 0;
       i++;
     }
-  matrix->matrix[i] = NULL;
   matrix->m = m;
   matrix->n = n;
   return (matrix);
@@ -111,7 +114,6 @@ void		my_free_matrix(t_matrix *matrix)
       free(matrix->matrix[i]);
       i++;
     }
-  free(matrix->matrix[i]);
   free(matrix->matrix);
   free(matrix);
 }

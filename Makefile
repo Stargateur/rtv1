@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.net>
 ## 
 ## Started on  Fri Jan  3 12:53:41 2014 Antoine PLASKOWSKI
-## Last update Fri Feb 28 08:45:37 2014 Antoine Plaskowski
+## Last update Fri Feb 28 11:00:20 2014 Antoine Plaskowski
 ##
 
 CC	=	clang
@@ -22,8 +22,19 @@ NAME	=	rtv1
 
 SRC	+=	src/main.c
 SRC	+=	src/my_parsing.c
+
+SRC	+=	src/my_x.c
+SRC	+=	src/my_put_pixel_to_img.c
+
+SRC	+=	src/my_open.c
+
 SRC	+=	src/my_object.c
 SRC	+=	src/my_tool_object.c
+
+SRC	+=	src/my_matrix.c
+SRC	+=	src/my_tool_matrix.c
+
+SRC	+=	src/my_tool_tab.c
 
 SRC	+=	src/my_str_to_wordtab.c
 SRC	+=	src/my_malloc.c
@@ -41,16 +52,7 @@ SRC	+=	src/my_strdup.c
 SRC	+=	src/my_char_in_str.c
 SRC	+=	src/my_get_next_line.c
 
-SRC	+=	src/my_tool_tab.c
-
-SRC	+=	src/my_matrix.c
-
-SRC	+=	src/my_open.c
-
-SRC	+=	src/my_x.c
-
 OBJ	=	$(SRC:.c=.o)
-
 
 all	:	$(NAME)
 

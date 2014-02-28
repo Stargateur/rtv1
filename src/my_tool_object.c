@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 17:42:43 2014 Antoine Plaskowski
-** Last update Fri Feb 28 09:37:12 2014 Antoine Plaskowski
+** Last update Fri Feb 28 10:57:14 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -42,7 +42,7 @@ int		my_aff_object(t_object *object)
   my_putnbr(object->rotation_z, 1);
   my_putstr("\nrayon = ", 1);
   my_putnbr(object->rayon, 1);
-  my_putstr("\ncolor = ", 1);
+  my_putstr("\ncolor = 0x", 1);
   my_putnbr_base(object->color.color, "0123456789ABCDEF", 1);
   my_putchar('\n', 1);
   return (1);
@@ -54,6 +54,7 @@ t_object	*my_remove_object(t_object *object)
 
   if (object == NULL)
     return (NULL);
+  tmp = NULL;
   if (object->prev != NULL)
     {
       object->prev->next = object->next;
@@ -64,8 +65,6 @@ t_object	*my_remove_object(t_object *object)
       object->next->prev = object->prev;
       tmp = object->next;
     }
-  else
-    tmp = NULL;
   my_free_matrix(object->position);
   free(object->name);
   free(object);
@@ -84,4 +83,26 @@ t_object	*my_insert_object(t_object *object, t_object *new_object)
   object->prev = new_object;
   new_object->next = object;
   return (new_object);
+}
+
+t_object	*my_cpy_object(t_object *object)
+{
+  t_object	*cpy;
+
+  if (object == NULL)
+    return (NULL);
+  if ((cpy = my_malloc(sizeof(t_object))) == NULL)
+    return (NULL);
+  if ((cpy->name = my_strdup(object->name)) == NULL)
+    return (NULL);
+  if ((cpy->position = my_cpy_matrix(object->position)) == NULL)
+    return (NULL);
+  cpy->rotation_x = object->rotation_x;
+  cpy->rotation_y = object->rotation_y;
+  cpy->rotation_z = object->rotation_z;
+  cpy->rayon = object->rayon;
+  cpy->color = object->color;
+  cpy->prev = NULL;
+  cpy->next = NULL;
+  return (cpy);
 }
