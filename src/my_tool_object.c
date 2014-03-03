@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 17:42:43 2014 Antoine Plaskowski
-** Last update Fri Feb 28 10:57:14 2014 Antoine Plaskowski
+** Last update Mon Mar  3 13:33:31 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -35,11 +35,11 @@ int		my_aff_object(t_object *object)
   my_putstr("\nposition_y = ", 1);
   my_putnbr(object->position->matrix[2][0], 1);
   my_putstr("\nrotation_x = ", 1);
-  my_putnbr(object->rotation_x, 1);
+  my_putnbr(object->rotation_x_degres, 1);
   my_putstr("\nrotation_y = ", 1);
-  my_putnbr(object->rotation_y, 1);
+  my_putnbr(object->rotation_y_degres, 1);
   my_putstr("\nrotation_z = ", 1);
-  my_putnbr(object->rotation_z, 1);
+  my_putnbr(object->rotation_z_degres, 1);
   my_putstr("\nrayon = ", 1);
   my_putnbr(object->rayon, 1);
   my_putstr("\ncolor = 0x", 1);
@@ -66,6 +66,9 @@ t_object	*my_remove_object(t_object *object)
       tmp = object->next;
     }
   my_free_matrix(object->position);
+  my_free_matrix(object->rotation_x);
+  my_free_matrix(object->rotation_y);
+  my_free_matrix(object->rotation_z);
   free(object->name);
   free(object);
   return (tmp);
@@ -97,9 +100,15 @@ t_object	*my_cpy_object(t_object *object)
     return (NULL);
   if ((cpy->position = my_cpy_matrix(object->position)) == NULL)
     return (NULL);
-  cpy->rotation_x = object->rotation_x;
-  cpy->rotation_y = object->rotation_y;
-  cpy->rotation_z = object->rotation_z;
+  if ((cpy->rotation_x = my_cpy_matrix(object->rotation_x)) == NULL)
+    return (NULL);
+  if ((cpy->rotation_y = my_cpy_matrix(object->rotation_y)) == NULL)
+    return (NULL);
+  if ((cpy->rotation_z = my_cpy_matrix(object->rotation_z)) == NULL)
+    return (NULL);
+  cpy->rotation_x_degres = object->rotation_x_degres;
+  cpy->rotation_y_degres = object->rotation_y_degres;
+  cpy->rotation_z_degres = object->rotation_z_degres;
   cpy->rayon = object->rayon;
   cpy->color = object->color;
   cpy->prev = NULL;

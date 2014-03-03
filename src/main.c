@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:00:09 2014 Antoine Plaskowski
-** Last update Fri Feb 28 17:29:03 2014 Antoine Plaskowski
+** Last update Mon Mar  3 13:28:34 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -22,7 +22,7 @@ static char	*my_search_map(char **argv)
   return (NULL);
 }
 
-static t_matrix	**my_init_screen(t_xvar *xvar)
+static t_matrix	**my_init_screen(t_xvar *xvar, t_object *object)
 {
   t_matrix	**scn;
   int		i;
@@ -89,14 +89,16 @@ int		main(int argc, char **argv)
   rtv1.object = NULL;
   if ((rtv1.xvar = my_init_x()) == NULL)
     return (1);
-  if ((rtv1.screen = my_init_screen(rtv1.xvar)) == NULL)
+  if ((rtv1.screen = my_init_screen(rtv1.xvar, NULL)) == NULL)
     return (1);
   if (my_load_scene(&rtv1, my_search_map(argv)))
     return (1);
+  my_aff_object(rtv1.eye);
   my_aff_all_object(rtv1.object);
-  while (rtv1.object)
-    rtv1.object = my_remove_object(rtv1.object);
   my_rtv1(&rtv1);
+  while (rtv1.object != NULL)
+    rtv1.object = my_remove_object(rtv1.object);
+  rtv1.eye = my_remove_object(rtv1.eye);
   my_free_screen(rtv1.screen);
   my_close_x(rtv1.xvar);
   return (0);

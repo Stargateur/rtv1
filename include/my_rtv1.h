@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:20:47 2014 Antoine Plaskowski
-** Last update Fri Feb 28 17:28:37 2014 Antoine Plaskowski
+** Last update Mon Mar  3 12:12:18 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_RTV1_H_
@@ -37,9 +37,12 @@ struct		s_object
   t_object	*prev;
   char		*name;
   t_matrix	*position;
-  int		rotation_x;
-  int		rotation_y;
-  int		rotation_z;
+  t_matrix	*rotation_x;
+  t_matrix	*rotation_y;
+  t_matrix	*rotation_z;
+  int		rotation_x_degres;
+  int		rotation_y_degres;
+  int		rotation_z_degres;
   int		rayon;
   t_color	color;
   t_object	*next;
@@ -88,5 +91,13 @@ int		my_load_scene(t_rtv1 *rtv1, char *paht);
 */
 
 int		my_put_pixel_to_img(XImage *img, t_color *color, int x);
+
+/*
+**		my_rotation.c
+*/
+
+int             my_rotation_x(t_object *object, int angle);
+int             my_rotation_y(t_object *object, int angle);
+int             my_rotation_z(t_object *object, int angle);
 
 #endif		/* !MY_RTV1_H_ */

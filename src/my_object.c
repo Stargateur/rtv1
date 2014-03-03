@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:51:22 2014 Antoine Plaskowski
-** Last update Fri Feb 28 10:38:26 2014 Antoine Plaskowski
+** Last update Mon Mar  3 13:59:42 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -17,11 +17,17 @@ static int	my_init_object(t_object *object)
 {
   object->prev = NULL;
   object->name = NULL;
-  if ((object->position = my_new_matrix(4, 1)) == NULL)
+  if ((object->position = my_identity(4)) == NULL)
     return (1);
-  object->rotation_x = 0;
-  object->rotation_y = 0;
-  object->rotation_z = 0;
+  if ((object->rotation_x = my_identity(4)) == NULL)
+    return (1);
+  if ((object->rotation_y = my_identity(4)) == NULL)
+    return (1);
+  if ((object->rotation_z = my_identity(4)) == NULL)
+    return (1);
+  object->rotation_x_degres = 0;
+  object->rotation_y_degres = 0;
+  object->rotation_z_degres = 0;
   object->rayon = 0;
   object->color.color = 0xFFFFFF;
   object->next = NULL;
@@ -55,17 +61,17 @@ static int	my_name_object(t_object *object, char *str)
 static int	my_set_var(t_object *object, char *str, int i)
 {
   if (i == 0)
-    object->position->matrix[0][0] = my_getnbr(str);
+    object->position->matrix[0][4] = my_getnbr(str);
   else if (i == 1)
-    object->position->matrix[1][0] = my_getnbr(str);
+    object->position->matrix[1][4] = my_getnbr(str);
   else if (i == 2)
-    object->position->matrix[2][0] = my_getnbr(str);
+    object->position->matrix[2][4] = my_getnbr(str);
   else if (i == 3)
-    object->rotation_x = my_getnbr(str);
+    my_rotation_x(object, my_getnbr(str));
   else if (i == 4)
-    object->rotation_y = my_getnbr(str);
+    my_rotation_y(object, my_getnbr(str));
   else if (i == 5)
-    object->rotation_z = my_getnbr(str);
+    my_rotation_z(object, my_getnbr(str));
   else if (i == 6)
     object->rayon = my_getnbr(str);
   else if (i == 7)

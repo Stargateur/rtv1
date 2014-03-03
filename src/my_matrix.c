@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Mon Nov 25 15:48:04 2013 Antoine Plaskowski
-** Last update Fri Feb 28 10:38:07 2014 Antoine Plaskowski
+** Last update Mon Mar  3 14:00:59 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -38,82 +38,58 @@ t_matrix	*my_new_matrix(const int m, const int n)
   return (matrix);
 }
 
-static double	my_mul_anx(const t_matrix *a, const t_matrix *b,
-			   const int i, const int j)
+t_matrix	*my_cpy_matrix(t_matrix *matrix)
 {
-  int		k;
-  double	result;
+  t_matrix	*cpy;
+  int		i;
+  int		j;
 
-  if (a == NULL || b == NULL)
-    return (0);
-  result = 0;
-  k = 0;
-  while (k < a->n)
+  if (matrix == NULL || (cpy = my_malloc(sizeof(t_matrix))) == NULL)
+    return (NULL);
+  if ((cpy->matrix = my_malloc(sizeof(double *) * matrix->m)) == NULL)
+    return (NULL);
+  i = 0;
+  while (i < matrix->m)
     {
-      result += a->matrix[i][k] * b->matrix[k][j];
-      k++;
+      if ((matrix->matrix[i] = my_malloc(sizeof(double) * matrix->n)) == NULL)
+	return (NULL);
+      j = 0;
+      while (j < matrix->n)
+	{
+	  cpy->matrix[i][j] = matrix->matrix[i][j];
+	  j++;
+	}
+      i++;
     }
-  return (result);
+  cpy->m = matrix->m;
+  cpy->n = matrix->n;
+  return (cpy);  
 }
 
-t_matrix	*my_mul_matrix(const t_matrix *a, const t_matrix *b)
+t_matrix	*my_identity(const int m)
 {
   t_matrix	*matrix;
   int		i;
   int		j;
 
-  if (a == NULL || b == NULL)
+  if ((matrix = my_malloc(sizeof(t_matrix))) == NULL)
     return (NULL);
-  if (a->n != b->m)
-    {
-      my_putstr("Impossible multiple matrix\n", 2);
-      return (NULL);
-    }
-  if ((matrix = my_new_matrix(a->m, b->n)) == NULL)
+  if ((matrix->matrix = my_malloc(sizeof(double *) * m)) == NULL)
     return (NULL);
   i = 0;
-  while (i < a->m)
+  while (i < m)
     {
+      if ((matrix->matrix[i] = my_malloc(sizeof(double) * m)) == NULL)
+	return (NULL);
       j = 0;
-      while (j < b->n)
-	{
-	  matrix->matrix[i][j] = my_mul_anx(a, b, i, j);
-	  j++;
-	}
+      while (j < m)
+	if (i != j)
+	  matrix->matrix[i][j++] = 0;
+	else
+	  matrix->matrix[i][j++] = 1;
       i++;
     }
+  matrix->m = m;
+  matrix->n = m;
   return (matrix);
-}
-
-void		my_aff_matrix(const t_matrix *matrix)
-{
-  int		i;
-
-  if (matrix != NULL || matrix->matrix != NULL)
-    {
-      i = 0;
-      printf("(");
-      while (i < matrix->m)
-	{
-	  printf("%.3f", matrix->matrix[i][0]);
-	  i++;
-	  if (i != matrix->m)
-	    printf(", ");
-	}
-      printf(")");
-    }
-}
-
-void		my_free_matrix(t_matrix *matrix)
-{
-  int		i;
-
-  i = 0;
-  while (i < matrix->m)
-    {
-      free(matrix->matrix[i]);
-      i++;
-    }
-  free(matrix->matrix);
-  free(matrix);
 }

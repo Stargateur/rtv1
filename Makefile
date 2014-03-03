@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.net>
 ## 
 ## Started on  Fri Jan  3 12:53:41 2014 Antoine PLASKOWSKI
-## Last update Fri Feb 28 17:28:49 2014 Antoine Plaskowski
+## Last update Mon Mar  3 13:39:59 2014 Antoine Plaskowski
 ##
 
 CC	=	clang
@@ -35,6 +35,7 @@ SRC	+=	src/my_tool_object.c
 
 SRC	+=	src/my_matrix.c
 SRC	+=	src/my_tool_matrix.c
+SRC	+=	src/my_rotation.c
 
 SRC	+=	src/my_tool_tab.c
 

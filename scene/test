@@ -1,4 +1,4 @@
-eye position_x=-500 position_y=500
+eye position_x=-500 position_y=500 rotation_x=10
 sphere position_x=500 position_y=500 position_z=0 rayon=42
 cone position_x=0 position_y=0 position_z=0 rayon=42
 cylinder position_x=0 position_y=0 position_z=0 rayon=42
