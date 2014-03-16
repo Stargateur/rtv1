@@ -1,5 +1,9 @@
-eye position_x=-500 position_y=500 rotation_x=10
-sphere position_x=500 position_y=500 position_z=0 rayon=42
-cone position_x=0 position_y=0 position_z=0 rayon=42
-cylinder position_x=0 position_y=0 position_z=0 rayon=42
-plan position_x=0 position_y=0 position_z=0
+eye position_x=-500 position_y=0 position_z=1 rotation_x=30 rotation_y=0
+light position_x=-500 position_y=0 position_z=1
+sphere rayon=42 color=FF position_x=200
+sphere rayon=42 color=FFF position_x=150 position_y=84
+cylinder rayon=42 color=FFFFF position_x=300 position_y=-84 position_z=42 rotation_y=90 rotation_z=42
+cylinder position_x=1000 rotation_x=90 color=999999 rayon=42
+cone position_x=200 rayon=42 rotation_x=30
+cone position_x=-200 position_y=50 rotation_x=-10 color=FFFFFF rayon=82
+plan color=FFFF

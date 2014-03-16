@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:19:50 2014 Antoine Plaskowski
-** Last update Fri Feb 28 17:28:00 2014 Antoine Plaskowski
+** Last update Sun Mar 16 12:14:12 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -14,6 +14,44 @@
 #include	"my_get_next_line.h"
 #include	"my_str.h"
 #include	"my_tool_tab.h"
+
+static int	my_matrix_eye(t_object *object)
+{
+  t_matrix	*tmp;
+
+  if ((tmp = my_new_matrix(4, 1)) == NULL)
+    return (1);
+  tmp->matrix[3][0] = 1;
+  while (object != NULL)
+    {
+      if ((object->eye = my_mul_matrix(object->trans, tmp)) == NULL)
+	return (1);
+      object = object->next;
+    }
+  my_free_matrix(tmp);
+  return (0);
+}
+
+static int	my_matrix_trans(t_object *eye, t_object *object)
+{
+  t_matrix      *matrix;
+  t_matrix      *tmp;
+
+  while (object != NULL)
+    {
+      if ((matrix = my_mul_matrix(eye->ro, object->ro_opo)) == NULL)
+	return (1);
+      if ((tmp = my_mul_matrix(matrix, eye->po)) == NULL)
+	return (1);
+      my_free_matrix(matrix);
+      if ((matrix = my_mul_matrix(tmp, object->po_opo)) == NULL)
+	return (1);
+      my_free_matrix(tmp);
+      object->trans = matrix;
+      object = object->next;
+    }
+  return (0);
+}
 
 static t_object	*my_found_eye(t_rtv1 *rtv1)
 {
@@ -77,5 +115,7 @@ int		my_load_scene(t_rtv1 *rtv1, char *path)
       my_putstr("there are more than 1 eye in the scene !\n", 2);
       return (1);
     }
+  if (my_matrix_trans(rtv1->eye, rtv1->object) || my_matrix_eye(rtv1->object) || my_light(rtv1))
+    return (1);
   return (0);
 }

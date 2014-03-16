@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Thu Oct  3 13:27:41 2013 Antoine Plaskowski
-** Last update Thu Feb 27 18:13:33 2014 Antoine Plaskowski
+** Last update Fri Mar 14 11:00:51 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -19,7 +19,7 @@ int		my_getnbr(const char *str)
   if (str == NULL)
     return (0);
   sign = 1;
-  while (*str != '\0' && (*str == '-' || *str == '+'))
+  while (*str == '-' || *str == '+')
     if (*str++ == '-')
       sign *= -1;
   while (*str == '0')

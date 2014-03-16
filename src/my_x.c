@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Jan  3 09:41:53 2014 Antoine PLASKOWSKI
-** Last update Fri Feb 28 10:31:37 2014 Antoine Plaskowski
+** Last update Fri Mar 14 15:21:28 2014 Antoine Plaskowski
 */
 
 #include	<X11/Xlib.h>
@@ -36,7 +36,7 @@ static XSetWindowAttributes	*my_set_at(XSetWindowAttributes *at)
   return (at);
 }
 
-static void			my_create_window(t_xvar *xvar)
+void				my_create_window(t_xvar *xvar)
 {
   XSetWindowAttributes		at;
 
@@ -47,7 +47,7 @@ static void			my_create_window(t_xvar *xvar)
   XMapWindow(xvar->dpy, xvar->win);
 }
 
-static int			my_create_image(t_xvar *xvar)
+int				my_create_image(t_xvar *xvar)
 {
   char				*img;
 

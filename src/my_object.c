@@ -1,14 +1,15 @@
-/*
+ /*
 ** my_object.c for my_object in /home/plasko_a/rendu/MUL_2013_rtv1
 ** 
 ** Made by Antoine Plaskowski
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:51:22 2014 Antoine Plaskowski
-** Last update Mon Mar  3 13:59:42 2014 Antoine Plaskowski
+** Last update Sun Mar 16 12:37:49 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
+#include	<math.h>
 #include	"my_rtv1.h"
 #include	"my_str.h"
 #include	"my_matrix.h"
@@ -17,17 +18,16 @@ static int	my_init_object(t_object *object)
 {
   object->prev = NULL;
   object->name = NULL;
-  if ((object->position = my_identity(4)) == NULL)
+  if ((object->po = my_identity(4)) == NULL ||
+      (object->po_opo = my_identity(4)) == NULL ||
+      (object->ro = my_identity(4)) == NULL ||
+      (object->ro_opo = my_identity(4)) == NULL)
     return (1);
-  if ((object->rotation_x = my_identity(4)) == NULL)
-    return (1);
-  if ((object->rotation_y = my_identity(4)) == NULL)
-    return (1);
-  if ((object->rotation_z = my_identity(4)) == NULL)
-    return (1);
-  object->rotation_x_degres = 0;
-  object->rotation_y_degres = 0;
-  object->rotation_z_degres = 0;
+  object->trans = NULL;
+  object->eye = NULL;
+  object->degres_x = 0;
+  object->degres_y = 0;
+  object->degres_z = 0;
   object->rayon = 0;
   object->color.color = 0xFFFFFF;
   object->next = NULL;
@@ -61,11 +61,11 @@ static int	my_name_object(t_object *object, char *str)
 static int	my_set_var(t_object *object, char *str, int i)
 {
   if (i == 0)
-    object->position->matrix[0][4] = my_getnbr(str);
+    my_position_x(object, my_getnbr(str));
   else if (i == 1)
-    object->position->matrix[1][4] = my_getnbr(str);
+    my_position_y(object, my_getnbr(str));
   else if (i == 2)
-    object->position->matrix[2][4] = my_getnbr(str);
+    my_position_z(object, my_getnbr(str));
   else if (i == 3)
     my_rotation_x(object, my_getnbr(str));
   else if (i == 4)
@@ -73,7 +73,11 @@ static int	my_set_var(t_object *object, char *str, int i)
   else if (i == 5)
     my_rotation_z(object, my_getnbr(str));
   else if (i == 6)
-    object->rayon = my_getnbr(str);
+    {
+      object->rayon = my_getnbr(str);
+      if (my_strcmp(object->name, "cone") == 0)
+	object->rayon = tan(object->rayon * MY_PI / 180);
+    }
   else if (i == 7)
     object->color.color = my_getnbr_base(str, "012345679ABCDEF");
   else

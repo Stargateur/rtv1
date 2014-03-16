@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Wed Nov 27 14:55:31 2013 Antoine Plaskowski
-** Last update Thu Feb 27 18:16:17 2014 Antoine Plaskowski
+** Last update Thu Mar 13 23:25:05 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -15,21 +15,23 @@ int		my_getnbr_base(const char *str, const char *base)
 {
   int		signe;
   int		nbr;
+  int		unite;
+  int		len;
 
-  if (str == NULL || base == NULL || my_strlen(base) < 2)
+  if (str == NULL || base == NULL || (len = my_strlen(base)) < 2)
     return (0);
   signe = 1;
-  while (*str != '\0' && (*str == '-' || *str == '+'))
+  while (*str == '-' || *str == '+')
     if (*str++ == '-')
       signe *= -1;
   while (*str == '0')
     str++;
   nbr = 0;
   if (signe == 1)
-    while (my_char_in_str(*str, base) != -1)
-      nbr = nbr * my_strlen(base) + (my_char_in_str(*str++, base));
+    while ((unite = my_char_in_str(*str++, base)) != -1)
+      nbr = nbr * len + unite;
   else
-    while (my_char_in_str(*str, base) != -1)
-      nbr = nbr * my_strlen(base) - (my_char_in_str(*str++, base));
+    while ((unite = my_char_in_str(*str++, base)) != -1)
+      nbr = nbr * len - unite;
   return (nbr);
 }

@@ -5,14 +5,14 @@
 ## Login   <plasko_a@epitech.net>
 ## 
 ## Started on  Fri Jan  3 12:53:41 2014 Antoine PLASKOWSKI
-## Last update Mon Mar  3 13:39:59 2014 Antoine Plaskowski
+## Last update Fri Mar 14 22:29:52 2014 Antoine Plaskowski
 ##
 
-CC	=	clang
+CC	=	gcc
 
 RM	=	rm -f
 
-CFLAGS	+=	-Wextra -Wall -O3 -g
+CFLAGS	+=	-Wextra -Wall -g -O3
 CFLAGS	+=	-ansi -pedantic
 CFLAGS	+=	-I include/
 
@@ -23,10 +23,15 @@ NAME	=	rtv1
 SRC	+=	src/main.c
 SRC	+=	src/my_rtv1.c
 SRC	+=	src/my_load_scene.c
+SRC	+=	src/my_found_inter.c
+SRC	+=	src/my_light.c
+SRC	+=	src/my_found_color.c
 
 SRC	+=	src/my_x.c
 SRC	+=	src/my_put_pixel_to_img.c
 SRC	+=	src/my_event_expose.c
+SRC	+=	src/my_event_resize.c
+SRC	+=	src/my_event_key_press.c
 
 SRC	+=	src/my_open.c
 
@@ -36,6 +41,12 @@ SRC	+=	src/my_tool_object.c
 SRC	+=	src/my_matrix.c
 SRC	+=	src/my_tool_matrix.c
 SRC	+=	src/my_rotation.c
+SRC	+=	src/my_position.c
+
+SRC	+=	src/my_plan.c
+SRC	+=	src/my_cylinder.c
+SRC	+=	src/my_sphere.c
+SRC	+=	src/my_cone.c
 
 SRC	+=	src/my_tool_tab.c
 

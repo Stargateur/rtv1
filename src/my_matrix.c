@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Mon Nov 25 15:48:04 2013 Antoine Plaskowski
-** Last update Mon Mar  3 14:00:59 2014 Antoine Plaskowski
+** Last update Mon Mar  3 17:10:09 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -51,7 +51,7 @@ t_matrix	*my_cpy_matrix(t_matrix *matrix)
   i = 0;
   while (i < matrix->m)
     {
-      if ((matrix->matrix[i] = my_malloc(sizeof(double) * matrix->n)) == NULL)
+      if ((cpy->matrix[i] = my_malloc(sizeof(double) * matrix->n)) == NULL)
 	return (NULL);
       j = 0;
       while (j < matrix->n)

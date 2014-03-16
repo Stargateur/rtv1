@@ -5,63 +5,108 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Mon Mar  3 11:33:43 2014 Antoine Plaskowski
-** Last update Mon Mar  3 13:29:44 2014 Antoine Plaskowski
+** Last update Sun Mar 16 12:13:22 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
 #include	<math.h>
 #include	"my_rtv1.h"
+#include	"my_str.h"
 
-int		my_rotation_x(t_object *object,  int angle)
+static int	my_rotation(t_object *object, t_matrix *matrix, t_matrix *matrix_opo)
 {
+  t_matrix	*tmp;
+
+  tmp = object->ro;
+  if ((object->ro = my_mul_matrix(object->ro, matrix)) == NULL)
+    return (1);
+  my_free_matrix(tmp);
+  my_free_matrix(matrix);
+  tmp = object->ro_opo;
+  if ((object->ro_opo = my_mul_matrix(object->ro_opo, matrix_opo)) == NULL)
+    return (1);
+  my_free_matrix(tmp);
+  my_free_matrix(matrix_opo);
+  return (0);
+}
+
+int		my_rotation_x(t_object *object, int angle)
+{
+  t_matrix	*matrix;
+  t_matrix	*matrix_opo;
   double	cos_a;
   double	sin_a;
 
-  if (object == NULL)
+  if (object == NULL || (matrix = my_identity(4)) == NULL ||
+      (matrix_opo = my_identity(4)) == NULL)
     return (1);
-  object->rotation_x_degres = angle;
-  angle = angle * MY_PI / 180;
-  cos_a = cos(angle);
-  sin_a = sin(angle);
-  object->rotation_x->matrix[2][2] = cos_a;
-  object->rotation_x->matrix[2][3] = -sin_a;
-  object->rotation_x->matrix[3][2] = sin_a;
-  object->rotation_x->matrix[2][3] = cos_a;
+  object->degres_x = angle;
+  cos_a = cos(angle * MY_PI / 180);
+  sin_a = sin(angle * MY_PI / 180);
+  matrix->matrix[1][1] = cos_a;
+  matrix->matrix[1][2] = -sin_a;
+  matrix->matrix[2][1] = sin_a;
+  matrix->matrix[2][2] = cos_a;
+  cos_a = cos(-angle * MY_PI / 180);
+  sin_a = sin(-angle * MY_PI / 180);
+  matrix_opo->matrix[1][1] = cos_a;
+  matrix_opo->matrix[1][2] = -sin_a;
+  matrix_opo->matrix[2][1] = sin_a;
+  matrix_opo->matrix[2][2] = cos_a;
+  my_rotation(object, matrix, matrix_opo);
   return (0);
 }
 
 int		my_rotation_y(t_object *object, int angle)
 {
+  t_matrix	*matrix;
+  t_matrix	*matrix_opo;
   double	cos_a;
   double	sin_a;
 
-  if (object == NULL)
+  if (object == NULL || (matrix = my_identity(4)) == NULL ||
+      (matrix_opo = my_identity(4)) == NULL)
     return (1);
-  object->rotation_y_degres = angle;
-  angle = angle * MY_PI / 180;
-  cos_a = cos(angle);
-  sin_a = sin(angle);
-  object->rotation_y->matrix[1][1] = cos_a;
-  object->rotation_y->matrix[1][3] = sin_a;
-  object->rotation_y->matrix[3][1] = -sin_a;
-  object->rotation_y->matrix[1][3] = cos_a;
+  object->degres_y = angle;
+  cos_a = cos(angle * MY_PI / 180);
+  sin_a = sin(angle * MY_PI / 180);
+  matrix->matrix[0][0] = cos_a;
+  matrix->matrix[0][2] = sin_a;
+  matrix->matrix[2][0] = -sin_a;
+  matrix->matrix[2][2] = cos_a;
+  cos_a = cos(-angle * MY_PI / 180);
+  sin_a = sin(-angle * MY_PI / 180);
+  matrix_opo->matrix[0][0] = cos_a;
+  matrix_opo->matrix[0][2] = sin_a;
+  matrix_opo->matrix[2][0] = -sin_a;
+  matrix_opo->matrix[2][2] = cos_a;
+  my_rotation(object, matrix, matrix_opo);
   return (0);
 }
 
 int		my_rotation_z(t_object *object, int angle)
 {
+  t_matrix	*matrix;
+  t_matrix	*matrix_opo;
   double	cos_a;
   double	sin_a;
 
-  if (object == NULL)
+  if (object == NULL || (matrix = my_identity(4)) == NULL ||
+      (matrix_opo = my_identity(4)) == NULL)
     return (1);
-  object->rotation_z_degres = angle;
-  angle = angle * MY_PI / 180;
-  cos_a = cos(angle);
-  sin_a = sin(angle);
-  object->rotation_z->matrix[1][1] = cos_a;
-  object->rotation_z->matrix[1][2] = -sin_a;
-  object->rotation_z->matrix[2][1] = sin_a;
-  object->rotation_z->matrix[2][2] = cos_a;
+  object->degres_z = angle;
+  cos_a = cos(angle * MY_PI / 180);
+  sin_a = sin(angle * MY_PI / 180);
+  matrix->matrix[0][0] = cos_a;
+  matrix->matrix[0][1] = -sin_a;
+  matrix->matrix[1][0] = sin_a;
+  matrix->matrix[1][1] = cos_a;
+  cos_a = cos(-angle * MY_PI / 180);
+  sin_a = sin(-angle * MY_PI / 180);
+  matrix_opo->matrix[0][0] = cos_a;
+  matrix_opo->matrix[0][1] = -sin_a;
+  matrix_opo->matrix[1][0] = sin_a;
+  matrix_opo->matrix[1][1] = cos_a;
+  my_rotation(object, matrix, matrix_opo);
   return (0);
 }

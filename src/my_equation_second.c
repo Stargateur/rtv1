@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Sun Jan  5 18:43:49 2014 Antoine PLASKOWSKI
-** Last update Fri Feb 28 17:14:41 2014 Antoine Plaskowski
+** Last update Tue Mar  4 09:54:48 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -13,7 +13,7 @@
 #include	<math.h>
 #include	"my_matrix.h"
 
-double		my_solve_second(double a, double b, double c)
+double		my_eq_se(double a, double b, double c)
 {
   double	delta;
   double	x1;
@@ -33,7 +33,11 @@ double		my_solve_second(double a, double b, double c)
     x1 = -c / b;
   else
     x1 = c;
-  if (abs(x1) < abs(x2))
+  if (x1 <= 0)
+    return (x2);
+  else if (x2 <= 0)
+    return (x1);
+  else if (x1 < x2)
     return (x1);
   return (x2);
 }

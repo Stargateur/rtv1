@@ -5,10 +5,11 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 17:42:43 2014 Antoine Plaskowski
-** Last update Mon Mar  3 13:33:31 2014 Antoine Plaskowski
+** Last update Sun Mar 16 12:33:18 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
+#include	<stdio.h>
 #include	"my_rtv1.h"
 #include	"my_str.h"
 
@@ -26,26 +27,36 @@ int		my_aff_object(t_object *object)
 {
   if (object == NULL)
     return (1);
-  my_putstr("object = ", 1);
-  my_putstr(object->name, 1);
-  my_putstr("\nposition_x = ", 1);
-  my_putnbr(object->position->matrix[0][0], 1);
-  my_putstr("\nposition_y = ", 1);
-  my_putnbr(object->position->matrix[1][0], 1);
-  my_putstr("\nposition_y = ", 1);
-  my_putnbr(object->position->matrix[2][0], 1);
-  my_putstr("\nrotation_x = ", 1);
-  my_putnbr(object->rotation_x_degres, 1);
-  my_putstr("\nrotation_y = ", 1);
-  my_putnbr(object->rotation_y_degres, 1);
-  my_putstr("\nrotation_z = ", 1);
-  my_putnbr(object->rotation_z_degres, 1);
-  my_putstr("\nrayon = ", 1);
-  my_putnbr(object->rayon, 1);
-  my_putstr("\ncolor = 0x", 1);
-  my_putnbr_base(object->color.color, "0123456789ABCDEF", 1);
+  printf("object = %s\nrayon = %f\ncolor = %x\n", object->name, object->rayon, object->color.color);
+  printf("trans=\n");
+  my_aff_matrix(object->trans);
+  printf("eye=\n");
+  my_aff_matrix(object->eye);
+  printf("ro=\n");
+  my_aff_matrix(object->ro);
+  printf("ro_opo=\n");
+  my_aff_matrix(object->ro_opo);
+  printf("po=\n");
+  my_aff_matrix(object->po);
+  printf("po_opo=\n");
+  my_aff_matrix(object->po_opo);
   my_putchar('\n', 1);
   return (1);
+}
+
+static void	my_free_object(t_object *object)
+{
+  if (object != NULL)
+    {
+      my_free_matrix(object->eye);
+      my_free_matrix(object->trans);
+      my_free_matrix(object->po);
+      my_free_matrix(object->po_opo);
+      my_free_matrix(object->ro);
+      my_free_matrix(object->ro_opo);
+      free(object->name);
+      free(object);
+    }
 }
 
 t_object	*my_remove_object(t_object *object)
@@ -65,12 +76,7 @@ t_object	*my_remove_object(t_object *object)
       object->next->prev = object->prev;
       tmp = object->next;
     }
-  my_free_matrix(object->position);
-  my_free_matrix(object->rotation_x);
-  my_free_matrix(object->rotation_y);
-  my_free_matrix(object->rotation_z);
-  free(object->name);
-  free(object);
+  my_free_object(object);
   return (tmp);
 }
 
@@ -98,20 +104,32 @@ t_object	*my_cpy_object(t_object *object)
     return (NULL);
   if ((cpy->name = my_strdup(object->name)) == NULL)
     return (NULL);
-  if ((cpy->position = my_cpy_matrix(object->position)) == NULL)
+  cpy->trans = my_cpy_matrix(object->trans);
+  cpy->eye = my_cpy_matrix(object->eye);
+  if ((cpy->po = my_cpy_matrix(object->po)) == NULL ||
+      (cpy->po_opo = my_cpy_matrix(object->po_opo)) == NULL ||
+      (cpy->ro = my_cpy_matrix(object->ro)) == NULL ||
+      (cpy->ro_opo = my_cpy_matrix(object->ro_opo)) == NULL)
     return (NULL);
-  if ((cpy->rotation_x = my_cpy_matrix(object->rotation_x)) == NULL)
-    return (NULL);
-  if ((cpy->rotation_y = my_cpy_matrix(object->rotation_y)) == NULL)
-    return (NULL);
-  if ((cpy->rotation_z = my_cpy_matrix(object->rotation_z)) == NULL)
-    return (NULL);
-  cpy->rotation_x_degres = object->rotation_x_degres;
-  cpy->rotation_y_degres = object->rotation_y_degres;
-  cpy->rotation_z_degres = object->rotation_z_degres;
+  cpy->degres_x = object->degres_x;
+  cpy->degres_y = object->degres_y;
+  cpy->degres_z = object->degres_z;
   cpy->rayon = object->rayon;
   cpy->color = object->color;
   cpy->prev = NULL;
   cpy->next = NULL;
   return (cpy);
+}
+
+int		my_len_object(t_object *object)
+{
+  int		i;
+
+  i = 0;
+  while (object != NULL)
+    {
+      i++;
+      object = object->next;
+    }
+  return (i);
 }

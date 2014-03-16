@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Jan  3 10:09:09 2014 Antoine PLASKOWSKI
-** Last update Fri Feb 28 11:25:10 2014 Antoine Plaskowski
+** Last update Fri Mar 14 15:27:55 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_X_H_
@@ -29,6 +29,8 @@ typedef struct	s_xvar
 */
 
 t_xvar		*my_init_x(void);
+int		my_create_image(t_xvar * xvar);
+void		my_create_window(t_xvar * xvar);
 void		my_close_x(t_xvar *xvar);
 
 /*
