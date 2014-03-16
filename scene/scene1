@@ -1,0 +1,10 @@
+eye position_x=-500 position_y=0 position_z=1 rotation_x=10 rotation_y=0
+light position_x=-500 position_y=0 position_z=1 rotation_x=10 rotation_y=0
+sphere rayon=42 color=FF position_x=200
+sphere rayon=42 color=FFF position_x=150 position_y=84
+cylinder position_x=1000 rotation_x=90 color=999999 rayon=42
+cylinder position_x=50 position_y=-200 rotation_x=0 color=777777 rayon=42
+cone position_x=200 rayon=42 rotation_x=30 color=F46F46
+cone position_x=-200 position_y=50 rotation_x=-10 color=A64641 rayon=82
+plan color=FFFF
+plan color=FFFFFF position_x=5000 rotation_y=90

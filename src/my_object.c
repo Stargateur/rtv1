@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:51:22 2014 Antoine Plaskowski
-** Last update Sun Mar 16 18:05:04 2014 Antoine Plaskowski
+** Last update Sun Mar 16 20:19:28 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -79,7 +79,7 @@ static int	my_set_var(t_object *object, char *str, int i)
 	object->rayon = tan(object->rayon * MY_PI / 180);
     }
   else if (i == 7)
-    object->color.color = my_getnbr_base(str, "012345679ABCDEF");
+    object->color.color = my_getnbr_base(str, "0123456789ABCDEF");
   else
     return (-1);
   return (i);

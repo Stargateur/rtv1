@@ -1,0 +1,8 @@
+eye
+light
+sphere rayon=195 color=FFFFFF position_x=411
+sphere rayon=190 color=000000 position_x=405
+sphere rayon=100 color=0000FF position_x=300
+sphere rayon=40 color=00FF00 position_x=200
+sphere rayon=10 color=FFFF00 position_x=100
+plan rotation_y=90 position_x=1000 color=FF00FF
