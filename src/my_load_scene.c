@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:19:50 2014 Antoine Plaskowski
-** Last update Sun Mar 16 12:14:12 2014 Antoine Plaskowski
+** Last update Sun Mar 16 18:12:57 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -115,7 +115,8 @@ int		my_load_scene(t_rtv1 *rtv1, char *path)
       my_putstr("there are more than 1 eye in the scene !\n", 2);
       return (1);
     }
-  if (my_matrix_trans(rtv1->eye, rtv1->object) || my_matrix_eye(rtv1->object) || my_light(rtv1))
+  if (my_light(rtv1) || my_matrix_trans(rtv1->eye, rtv1->object) ||
+      my_matrix_eye(rtv1->object))
     return (1);
   return (0);
 }

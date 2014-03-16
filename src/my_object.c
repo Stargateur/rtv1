@@ -1,11 +1,11 @@
- /*
+/*
 ** my_object.c for my_object in /home/plasko_a/rendu/MUL_2013_rtv1
 ** 
 ** Made by Antoine Plaskowski
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:51:22 2014 Antoine Plaskowski
-** Last update Sun Mar 16 12:37:49 2014 Antoine Plaskowski
+** Last update Sun Mar 16 18:05:04 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>

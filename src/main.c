@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:00:09 2014 Antoine Plaskowski
-** Last update Sun Mar 16 12:34:30 2014 Antoine Plaskowski
+** Last update Sun Mar 16 19:04:01 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -32,13 +32,12 @@ int		main(int argc, char **argv)
     return (1);
   if (my_load_scene(&rtv1, my_search_map(argv)))
     return (1);
-  my_aff_object(rtv1.eye);
-  my_aff_all_object(rtv1.light);
-  my_aff_all_object(rtv1.object);
   my_rtv1(&rtv1);
   while (rtv1.object != NULL)
     rtv1.object = my_remove_object(rtv1.object);
   rtv1.eye = my_remove_object(rtv1.eye);
+  while (rtv1.light != NULL)
+    rtv1.light = my_remove_object(rtv1.light);
   my_close_x(rtv1.xvar);
   return (0);
 }

@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.net>
 ## 
 ## Started on  Fri Jan  3 12:53:41 2014 Antoine PLASKOWSKI
-## Last update Fri Mar 14 22:29:52 2014 Antoine Plaskowski
+## Last update Sun Mar 16 20:05:12 2014 Antoine Plaskowski
 ##
 
 CC	=	gcc
@@ -23,12 +23,13 @@ NAME	=	rtv1
 SRC	+=	src/main.c
 SRC	+=	src/my_rtv1.c
 SRC	+=	src/my_load_scene.c
-SRC	+=	src/my_found_inter.c
 SRC	+=	src/my_light.c
+SRC	+=	src/my_found_inter.c
 SRC	+=	src/my_found_color.c
+SRC	+=	src/my_found_lumi.c
 
 SRC	+=	src/my_x.c
-SRC	+=	src/my_put_pixel_to_img.c
+SRC	+=	src/my_put_p_i.c
 SRC	+=	src/my_event_expose.c
 SRC	+=	src/my_event_resize.c
 SRC	+=	src/my_event_key_press.c

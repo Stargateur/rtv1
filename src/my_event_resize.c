@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Jan  3 09:42:08 2014 Antoine PLASKOWSKI
-** Last update Fri Mar 14 15:30:15 2014 Antoine Plaskowski
+** Last update Sun Mar 16 18:09:35 2014 Antoine Plaskowski
 */
 
 #include	<X11/Xlib.h>
@@ -20,6 +20,6 @@ int		my_event_resize(t_xvar *xvar, XEvent *event)
   XDestroyImage(xvar->img);
   my_create_window(xvar);
   if (my_create_image(xvar))
-    return (1);;
+    return (1);
   return (0);
 }

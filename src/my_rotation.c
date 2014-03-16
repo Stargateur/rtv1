@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Mon Mar  3 11:33:43 2014 Antoine Plaskowski
-** Last update Sun Mar 16 12:13:22 2014 Antoine Plaskowski
+** Last update Sun Mar 16 20:06:58 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -13,20 +13,20 @@
 #include	"my_rtv1.h"
 #include	"my_str.h"
 
-static int	my_rotation(t_object *object, t_matrix *matrix, t_matrix *matrix_opo)
+static int	my_rotation(t_object *object, t_matrix *m, t_matrix *m_opo)
 {
   t_matrix	*tmp;
 
   tmp = object->ro;
-  if ((object->ro = my_mul_matrix(object->ro, matrix)) == NULL)
+  if ((object->ro = my_mul_matrix(object->ro, m)) == NULL)
     return (1);
   my_free_matrix(tmp);
-  my_free_matrix(matrix);
+  my_free_matrix(m);
   tmp = object->ro_opo;
-  if ((object->ro_opo = my_mul_matrix(object->ro_opo, matrix_opo)) == NULL)
+  if ((object->ro_opo = my_mul_matrix(object->ro_opo, m_opo)) == NULL)
     return (1);
   my_free_matrix(tmp);
-  my_free_matrix(matrix_opo);
+  my_free_matrix(m_opo);
   return (0);
 }
 

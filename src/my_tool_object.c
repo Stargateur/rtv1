@@ -5,44 +5,13 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 17:42:43 2014 Antoine Plaskowski
-** Last update Sun Mar 16 12:33:18 2014 Antoine Plaskowski
+** Last update Sun Mar 16 19:03:35 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	"my_rtv1.h"
 #include	"my_str.h"
-
-int		my_aff_all_object(t_object *object)
-{
-  while (object != NULL)
-    {
-      my_aff_object(object);
-      object = object->next;
-    }
-  return (0);
-}
-
-int		my_aff_object(t_object *object)
-{
-  if (object == NULL)
-    return (1);
-  printf("object = %s\nrayon = %f\ncolor = %x\n", object->name, object->rayon, object->color.color);
-  printf("trans=\n");
-  my_aff_matrix(object->trans);
-  printf("eye=\n");
-  my_aff_matrix(object->eye);
-  printf("ro=\n");
-  my_aff_matrix(object->ro);
-  printf("ro_opo=\n");
-  my_aff_matrix(object->ro_opo);
-  printf("po=\n");
-  my_aff_matrix(object->po);
-  printf("po_opo=\n");
-  my_aff_matrix(object->po_opo);
-  my_putchar('\n', 1);
-  return (1);
-}
 
 static void	my_free_object(t_object *object)
 {

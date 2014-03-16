@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Mar 14 14:19:03 2014 Antoine Plaskowski
-** Last update Fri Mar 14 14:56:26 2014 Antoine Plaskowski
+** Last update Sun Mar 16 19:54:47 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -15,7 +15,6 @@ int		my_event_key_press(XEvent *event)
 {
   if (event == NULL)
     return (1);
-  printf("%d\n", event->xkey.keycode);
   if (event->xkey.keycode == 9)
     return (1);
   return (0);

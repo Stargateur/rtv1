@@ -5,22 +5,37 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Fri Feb 28 17:25:57 2014 Antoine Plaskowski
-** Last update Sun Mar 16 12:16:42 2014 Antoine Plaskowski
+** Last update Sun Mar 16 20:05:30 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
 #include	<math.h>
 #include	"my_rtv1.h"
 
+static int	my_help_set_image(t_xvar *xvar, t_matrix *scn, int x, int y)
+{
+  scn->matrix[0][0] = xvar->y / tan(DISTANCE * MY_PI / 180);
+  scn->matrix[1][0] = xvar->x / 2.0 - x;
+  scn->matrix[2][0] = xvar->y / 2.0 - y;
+  scn->matrix[3][0] = 1;
+  return (0);
+}
+
+static void	my_free_k(t_k *k)
+{
+  my_free_matrix(k->inter);
+  my_free_matrix(k->inter_nor);
+  free(k);
+}
+
 static int	my_set_image(t_xvar *xvar, t_object *object, t_object *light)
 {
   t_matrix	*scn;
   t_k		*k;
-  t_color	*color;
   int		x;
   int		y;
 
-  if ((scn = my_new_matrix(4, 1)) == NULL)
+  if ((scn = my_new_matrix(4, 1)) == NULL || light == NULL)
     return (1);
   y = 0;
   while (y < xvar->y)
@@ -28,24 +43,14 @@ static int	my_set_image(t_xvar *xvar, t_object *object, t_object *light)
       x = 0;
       while (x < xvar->x)
 	{
-	  scn->matrix[0][0] = xvar->y / tan(DISTANCE * MY_PI / 180);
-          scn->matrix[1][0] = xvar->x / 2.0 - x;
-          scn->matrix[2][0] = xvar->y / 2.0 - y;
-          scn->matrix[3][0] = 1;
+	  my_help_set_image(xvar, scn, x, y);
 	  if ((k = my_found_inter(object, scn)) == NULL)
 	    return (1);
 	  if (k->k > 0)
-	    {
-	      if ((color = my_found_color(light, object, k)) == NULL)
-		return (1);
-	      my_put_pixel_to_img(xvar->img, &k->object->color, (y * xvar->x + x) * 4);
-	      free(color);
-	    }
-	  free(k);
+	    my_put_p_i(xvar->img, &k->object->color, (y * xvar->x + x) * 4);
+	  my_free_k(k);
 	  x++;
 	}
-      printf("%d%%\n", 100 * y / xvar->y);
-      my_event_expose(xvar);
       y++;
     }
   my_free_matrix(scn);

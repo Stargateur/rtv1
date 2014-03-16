@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Mon Nov 25 15:48:04 2013 Antoine Plaskowski
-** Last update Mon Mar  3 17:10:09 2014 Antoine Plaskowski
+** Last update Sun Mar 16 18:04:44 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -63,7 +63,7 @@ t_matrix	*my_cpy_matrix(t_matrix *matrix)
     }
   cpy->m = matrix->m;
   cpy->n = matrix->n;
-  return (cpy);  
+  return (cpy);
 }
 
 t_matrix	*my_identity(const int m)

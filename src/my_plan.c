@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Mon Mar  3 19:21:38 2014 Antoine Plaskowski
-** Last update Tue Mar  4 09:53:35 2014 Antoine Plaskowski
+** Last update Sun Mar 16 18:08:22 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -21,6 +21,7 @@ double		my_plan(t_matrix *point, t_matrix *vecteur, double radius)
 
   if (point == NULL || vecteur == NULL)
     return (-1);
+  (void) radius;
   a = 0;
   b = vecteur->matrix[2][0];
   c = point->matrix[2][0];

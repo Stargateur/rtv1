@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Thu Feb 27 08:20:47 2014 Antoine Plaskowski
-** Last update Sun Mar 16 11:53:12 2014 Antoine Plaskowski
+** Last update Sun Mar 16 20:07:56 2014 Antoine Plaskowski
 */
 
 #ifndef		MY_RTV1_H_
@@ -56,6 +56,7 @@ struct		s_k
   double	k;
   t_object	*object;
   t_matrix	*inter;
+  t_matrix	*inter_nor;
 };
 
 typedef struct	s_rtv1 t_rtv1;
@@ -84,8 +85,6 @@ t_object	*my_put_object(t_object *object, t_object *new_object);
 **		my_tool_object.c
 */
 
-int		my_aff_all_object(t_object *object);
-int		my_aff_object(t_object *object);
 t_object	*my_remove_object(t_object *object);
 t_object	*my_insert_object(t_object *object, t_object *new_object);
 t_object	*my_cpy_object(t_object *object);
@@ -98,10 +97,10 @@ int		my_len_object(t_object *object);
 int		my_load_scene(t_rtv1 *rtv1, char *paht);
 
 /*
-**		my_put_pixel_to_img.c
+**		my_put_p_i.c
 */
 
-int		my_put_pixel_to_img(XImage *img, t_color *color, int x);
+int		my_put_p_i(XImage *img, t_color *color, int x);
 
 /*
 **		my_rotation.c
@@ -172,5 +171,11 @@ int		my_light(t_rtv1 *rtv1);
 */
 
 t_color		*my_found_color(t_object *light, t_object *object, t_k *k);
+
+/*
+**		my_found_lumi.c
+*/
+
+int		my_found_lumi(t_color *color, t_k *k);
 
 #endif		/* !MY_RTV1_H_ */

@@ -5,7 +5,7 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Mon Mar  3 13:38:04 2014 Antoine Plaskowski
-** Last update Mon Mar  3 19:13:38 2014 Antoine Plaskowski
+** Last update Sun Mar 16 19:26:00 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -58,30 +58,6 @@ t_matrix	*my_mul_matrix(const t_matrix *a, const t_matrix *b)
       i++;
     }
   return (matrix);
-}
-
-void		my_aff_matrix(const t_matrix *matrix)
-{
-  int		i;
-  int		j;
-
-  if (matrix != NULL && matrix->matrix != NULL)
-    {
-      i = 0;
-      while (i < matrix->m)
-	{
-	  printf("(");
-	  j = 0;
-	  while (j < matrix->n)
-	    {
-	      printf("%.3f", matrix->matrix[i][j++]);
-	      if (j != matrix->n)
-		printf(", ");
-	    }
-	  printf(")\n");
-	  i++;
-	}
-    }
 }
 
 void		my_free_matrix(t_matrix *matrix)
