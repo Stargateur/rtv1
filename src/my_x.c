@@ -5,14 +5,14 @@
 ** Login   <plasko_a@epitech.net>
 ** 
 ** Started on  Fri Jan  3 09:41:53 2014 Antoine PLASKOWSKI
-** Last update Fri Mar 14 15:21:28 2014 Antoine Plaskowski
+** Last update Sun Mar 16 20:09:59 2014 Antoine Plaskowski
 */
 
-#include	<X11/Xlib.h>
-#include	<X11/Xutil.h>
-#include	<stdlib.h>
-#include	"my_x.h"
-#include	"my_str.h"
+#include			<X11/Xlib.h>
+#include			<X11/Xutil.h>
+#include			<stdlib.h>
+#include			"my_x.h"
+#include			"my_str.h"
 
 static XSetWindowAttributes	*my_set_at(XSetWindowAttributes *at)
 {
