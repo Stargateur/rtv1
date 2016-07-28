@@ -12,11 +12,15 @@ CC	=	gcc
 
 RM	=	rm -f
 
-CFLAGS	+=	-Wextra -Wall -g -O3
+CFLAGS	+=	-Wextra -Wall -O3
 CFLAGS	+=	-ansi -pedantic
 CFLAGS	+=	-I include/
 
 LDFLAGS	+=	-l X11 -l m
+
+ifeq ($(CC), clang)
+CFLAGS	+=	-Weverything
+endif
 
 NAME	=	rtv1
 

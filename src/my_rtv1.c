@@ -5,7 +5,7 @@
 ** Login   <antoine.plaskowski@epitech.eu>
 ** 
 ** Started on  Fri Feb 28 17:25:57 2014 Antoine Plaskowski
-** Last update Sun Mar 16 20:05:30 2014 Antoine Plaskowski
+** Last update Sun Jul  6 15:13:16 2014 Antoine Plaskowski
 */
 
 #include	<stdlib.h>
@@ -63,8 +63,8 @@ static int	my_event_rtv1(t_rtv1 *rtv1)
 
   while (42)
     {
-      while (XPending(rtv1->xvar->dpy))
-        {
+      /* while (XPending(rtv1->xvar->dpy)) */
+      /*   { */
           XNextEvent(rtv1->xvar->dpy, &event);
 	  if (event.type == KeyPress)
 	    {
@@ -79,7 +79,7 @@ static int	my_event_rtv1(t_rtv1 *rtv1)
 	    }
 	  else if (event.type == Expose)
 	    my_event_expose(rtv1->xvar);
-	}
+	/* } */
     }
   return (1);
 }
